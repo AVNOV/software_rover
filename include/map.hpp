@@ -2,6 +2,10 @@
 #define MAP_HPP
 
 #include <iostream>
+#include <vector>
+
+#define MAP_HEIGHT 10
+#define MAP_WIDTH 10
 
 class Map {
   private:
@@ -10,7 +14,7 @@ class Map {
   public:
     Map(std::vector<std::string> l);
     void displayMap() const;
-    void setRoverPosition(int x, int y);
+    void setRoverPosition(int, int, char);
 };
 
 #endif
