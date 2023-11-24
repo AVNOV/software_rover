@@ -12,8 +12,8 @@ void Map::displayMap() const
   }
 };
 
-void Map::setRoverPosition(int x, int y)
+void Map::setRoverPosition(int x, int y, char tile)
 {
-  layout[y][x] = 'r';
+  layout[y][x] = tile;
 }
 
