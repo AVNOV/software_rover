@@ -10,9 +10,16 @@
 
 class IRover {
     public:
+        enum Direction
+        {
+            N,
+            S,
+            E,
+            W
+        };
         virtual void moveForward() = 0;
-        virtual void moveLeft() = 0;
-        virtual void moveRight() = 0;
+        virtual void turnLeft() = 0;
+        virtual void turnRight() = 0;
         virtual void moveBackward() = 0;
 
         virtual ~IRover() {}
