@@ -16,8 +16,6 @@ public:
     {
         map.setRoverPosition(position.first, position.second, 'R');
         setDirection(direction);
-        std::cout << getDirection() <<std::endl;
-
     }
 
     void moveForward() override
@@ -43,52 +41,16 @@ public:
         default:
             break;
         }
-        std::cout << this->position.first << std::endl;
-        std::cout << this->position.second << std::endl;
-        
-        // if (position.second > 0)
-        // {
-        //     map.setRoverPosition(position.first, position.second, '.');
-        //     position.second--;
-        //     map.setRoverPosition(position.first, position.second, 'R');
-        //     std::cout << "Rover avance" << std::endl;
-        // }
-        // else
-        // {
-        //     std::cout << "Bord de map" << std::endl;
-        // }
     }
 
     void turnLeft() override
     {
         turn('L');
-        // if (position.first > 0)
-        // {
-        //     map.setRoverPosition(position.first, position.second, '.');
-        //     position.first--;
-        //     map.setRoverPosition(position.first, position.second, 'R');
-        //     std::cout << "Rover gauche" << std::endl;
-        // }
-        // else
-        // {
-        //     std::cout << "Bord de map" << std::endl;
-        // }
     }
 
     void turnRight() override
     {
         turn('R');
-        // if (position.first < MAP_WIDTH - 1)
-        // {
-        //     map.setRoverPosition(position.first, position.second, '.');
-        //     position.first++;
-        //     map.setRoverPosition(position.first, position.second, 'R');
-        //     std::cout << "Rover droite" << std::endl;
-        // }
-        // else
-        // {
-        //     std::cout << "Bord de map" << std::endl;
-        // }
     }
 
     void turn(char direction) {
@@ -148,16 +110,6 @@ public:
         default:
             break;
         }
-        std::cout << this->position.first << std::endl;
-        std::cout << this->position.second << std::endl;
-        // if (position.second < MAP_HEIGHT - 1) {
-        //     map.setRoverPosition(position.first, position.second, '.');
-        //     position.second++;
-        //     map.setRoverPosition(position.first, position.second, 'R');
-        //     std::cout << "Rover recule" << std::endl;
-        // } else {
-        //     std::cout << "Bord de map" << std::endl;
-        // }
     }
 
     void setDirection(Direction direction) {
