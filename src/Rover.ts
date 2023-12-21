@@ -100,4 +100,8 @@ export class Rover {
   public getPosition(): { x: number; y: number } {
     return this.position;
   }
+
+  public getOrientation(): Orientation {
+    return this.orientation;
+  }
 }
