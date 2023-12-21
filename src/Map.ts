@@ -1,4 +1,4 @@
-import { Orientation } from "./Orientation";
+import { Position } from "./Position";
 
 export class Map {
   public width: number;
@@ -22,6 +22,8 @@ export class Map {
       position.y = 0
     }
 
-    return position
+    const newPosition = new Position(position.x, position.y)
+
+    return newPosition
   }
 }

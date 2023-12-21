@@ -1,13 +1,14 @@
 import { Map } from "./Map";
 import { Orientation } from "./Orientation";
+import { Position } from "./Position";
 
 export class Rover {
-  private position: { x: number; y: number };
+  private position: Position;
   private orientation: Orientation;
   private map: Map;
 
   public constructor(
-    position: { x: number; y: number },
+    position: Position,
     orientation: Orientation,
     map: Map
   ) {
@@ -16,38 +17,58 @@ export class Rover {
     this.map = map;
   }
 
-  public moveForward(): void {
+  public moveForward(obstacle: Position): string | void {
+    const position = this.position.getPosition();
+    const obstaclePosition = obstacle.getPosition();
     switch (this.orientation) {
       case Orientation.North:
-        this.position = this.map.getPosition({ x: this.position.x, y: this.position.y + 1 });
+        if (position.y + 1 === obstaclePosition.y)
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        else this.position = this.map.getPosition({ x: position.x, y: position.y + 1 });
         break;
       case Orientation.South:
-        this.position = this.map.getPosition({ x: this.position.x, y: this.position.y - 1 });
+        if (position.y - 1 === obstaclePosition.y) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        else this.position = this.map.getPosition({ x: position.x, y: position.y - 1 });
         break;
       case Orientation.East:
-        this.position = this.map.getPosition({ x: this.position.x + 1, y: this.position.y });
+        if (position.x + 1 === obstaclePosition.x) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        this.position = this.map.getPosition({ x: position.x + 1, y: position.y });
         break;
       case Orientation.West:
-        this.position = this.map.getPosition({ x: this.position.x - 1, y: this.position.y });
+        if (position.x - 1 === obstaclePosition.x) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        this.position = this.map.getPosition({ x: position.x - 1, y: position.y });
         break;
       default:
         break;
     }
   }
 
-  public moveBackward(): void {
+  public moveBackward(obstacle: Position): string | void {
+    const position = this.position.getPosition();
+    const obstaclePosition = obstacle.getPosition();
     switch (this.orientation) {
       case Orientation.North:
-        this.position = this.map.getPosition({ x: this.position.x, y: this.position.y - 1 });
+        if (position.y - 1 === obstaclePosition.y) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        else this.position = this.map.getPosition({ x: position.x, y: position.y - 1 });
         break;
       case Orientation.South:
-        this.position = this.map.getPosition({ x: this.position.x, y: this.position.y + 1 });
+        if (position.y + 1 === obstaclePosition.y) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        this.position = this.map.getPosition({ x: position.x, y: position.y + 1 });
         break;
       case Orientation.East:
-        this.position = this.map.getPosition({ x: this.position.x - 1, y: this.position.y });
+        if (position.x - 1 === obstaclePosition.x) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        this.position = this.map.getPosition({ x: position.x - 1, y: position.y });
         break;
       case Orientation.West:
-        this.position = this.map.getPosition({ x: this.position.x + 1, y: this.position.y });
+        if (position.x + 1 === obstaclePosition.x) 
+          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
+        this.position = this.map.getPosition({ x: position.x + 1, y: position.y });
         break;
       default:
         break;
@@ -97,7 +118,7 @@ export class Rover {
     }
   }
 
-  public getPosition(): { x: number; y: number } {
+  public getPosition(): Position {
     return this.position;
   }
 

@@ -1,16 +1,15 @@
 import { Map } from "./Map";
 import { Orientation } from "./Orientation";
+import { Position } from "./Position";
 import { Rover } from "./Rover";
+import { RoverInterpreter } from "./RoverInterpreter";
 
 const map = new Map(10, 10);
-const rover = new Rover({ x: 0, y: 0}, Orientation.North, map);
+const roverPosition = new Position(0, 0);
+const rover = new Rover(roverPosition, Orientation.North, map);
+const obstaclePosition = new Position(0, 2);
+const interpreter = new RoverInterpreter(rover);
 
-console.log(rover.getPosition())
+interpreter.interpret('avancer', obstaclePosition);
+interpreter.interpret('avancer', obstaclePosition);
 
-rover.turnRight()
-
-console.log(rover.getPosition())
-
-rover.moveBackward()
-
-console.log(rover.getPosition())
