@@ -1,3 +1,4 @@
+// Objet-valeur
 export class Map {
   public width: number;
   public height: number;

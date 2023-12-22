@@ -2,6 +2,7 @@ import { Map } from "./Map";
 import { Orientation } from "./Orientation";
 import { Position } from "./Position";
 
+// Objet-valeur
 export class Rover {
   private position: Position;
   private orientation: Orientation;

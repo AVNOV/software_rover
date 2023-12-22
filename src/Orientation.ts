@@ -1,3 +1,4 @@
+// Objet-valeur
 export enum Orientation {
   North = "N",
   East = "E",

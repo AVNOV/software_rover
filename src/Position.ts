@@ -1,5 +1,6 @@
 import { Map } from "./Map";
 
+// Objet-valeur
 export class Position {
   private x: number;
   private y: number;

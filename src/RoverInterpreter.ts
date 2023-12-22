@@ -1,6 +1,7 @@
 import { Rover } from "./Rover";
 import { Position } from "./Position";
 
+// Service
 export class RoverInterpreter {
   static interpret(command: string, rover: Rover, obstacle: Position): void {
     switch (command) {
@@ -12,11 +13,9 @@ export class RoverInterpreter {
         break;
       case "droite":
         rover.turnRight();
-        rover.moveForward(obstacle);
         break;
       case "gauche":
         rover.turnLeft();
-        rover.moveForward(obstacle);
         break;
     }
   }
