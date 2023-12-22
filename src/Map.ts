@@ -1,8 +1,8 @@
 import { Position } from "./Position";
 
 export class Map {
-  public width: number;
-  public height: number;
+  private width: number;
+  private height: number;
 
   public constructor(width: number, height: number) {
     this.width = width;

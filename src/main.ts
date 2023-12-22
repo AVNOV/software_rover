@@ -8,8 +8,7 @@ const map = new Map(10, 10);
 const roverPosition = new Position(0, 0);
 const rover = new Rover(roverPosition, Orientation.North, map);
 const obstaclePosition = new Position(0, 2);
-const interpreter = new RoverInterpreter(rover);
 
-interpreter.interpret('avancer', obstaclePosition);
-interpreter.interpret('avancer', obstaclePosition);
+RoverInterpreter.interpret('avancer', rover, obstaclePosition);
+RoverInterpreter.interpret('avancer', rover, obstaclePosition);
 

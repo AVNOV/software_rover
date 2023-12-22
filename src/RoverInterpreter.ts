@@ -2,27 +2,21 @@ import { Rover } from "./Rover";
 import { Position } from "./Position";
 
 export class RoverInterpreter {
-  private rover: Rover;
-
-  constructor(rover: Rover) {
-    this.rover = rover;
-  }
-
-  public interpret(command: string, obstacle: Position): void {
+  static interpret(command: string, rover: Rover, obstacle: Position): void {
     switch (command) {
       case "avancer":
-        this.rover.moveForward(obstacle);
+        rover.moveForward(obstacle);
         break;
       case "reculer":
-        this.rover.moveBackward(obstacle);
+        rover.moveBackward(obstacle);
         break;
       case "droite":
-        this.rover.turnRight();
-        this.rover.moveForward(obstacle);
+        rover.turnRight();
+        rover.moveForward(obstacle);
         break;
       case "gauche":
-        this.rover.turnLeft();
-        this.rover.moveForward(obstacle);
+        rover.turnLeft();
+        rover.moveForward(obstacle);
         break;
     }
   }
