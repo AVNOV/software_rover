@@ -17,58 +17,39 @@ export class Rover {
     this.map = map;
   }
 
-  public moveForward(obstacle: Position): string | void {
-    const position = this.position.getPosition();
-    const obstaclePosition = obstacle.getPosition();
+  public moveForward(obstacle: Position): void {
     switch (this.orientation) {
       case Orientation.North:
-        if (position.y + 1 === obstaclePosition.y)
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        else this.position = this.map.getPosition({ x: position.x, y: position.y + 1 });
+        this.position.checkPosition(obstacle, this.map, this.position, 0, 1);
         break;
       case Orientation.South:
-        if (position.y - 1 === obstaclePosition.y) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        else this.position = this.map.getPosition({ x: position.x, y: position.y - 1 });
+        this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
         break;
       case Orientation.East:
-        if (position.x + 1 === obstaclePosition.x) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        this.position = this.map.getPosition({ x: position.x + 1, y: position.y });
+        this.position.checkPosition(obstacle, this.map, this.position, 1, 0);
         break;
       case Orientation.West:
-        if (position.x - 1 === obstaclePosition.x) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        this.position = this.map.getPosition({ x: position.x - 1, y: position.y });
+        this.position.checkPosition(obstacle, this.map, this.position, -1, 0);
         break;
       default:
         break;
     }
   }
 
-  public moveBackward(obstacle: Position): string | void {
-    const position = this.position.getPosition();
-    const obstaclePosition = obstacle.getPosition();
+  public moveBackward(obstacle: Position): void {
+
     switch (this.orientation) {
       case Orientation.North:
-        if (position.y - 1 === obstaclePosition.y) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        else this.position = this.map.getPosition({ x: position.x, y: position.y - 1 });
+        this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
         break;
       case Orientation.South:
-        if (position.y + 1 === obstaclePosition.y) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        this.position = this.map.getPosition({ x: position.x, y: position.y + 1 });
+        this.position.checkPosition(obstacle, this.map, this.position, 0, 1);
         break;
       case Orientation.East:
-        if (position.x - 1 === obstaclePosition.x) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        this.position = this.map.getPosition({ x: position.x - 1, y: position.y });
+        this.position.checkPosition(obstacle, this.map, this.position,-1, 0);
         break;
       case Orientation.West:
-        if (position.x + 1 === obstaclePosition.x) 
-          console.log(`Obstacle detected - position: x: ${position.x}, y: ${position.y}`)
-        this.position = this.map.getPosition({ x: position.x + 1, y: position.y });
+        this.position.checkPosition(obstacle, this.map, this.position, +1, 0);
         break;
       default:
         break;
