@@ -24,7 +24,7 @@ export class Position {
   }
 
   public checkPosition(obstacle: Position, map: Map, position: Position, x:number, y: number): void {
-    if (obstacle.x === position.x + x || obstacle.y === position.y + y) {
+    if (obstacle.x === position.x + x && obstacle.y === position.y + y) {
       console.log(`Obstacle detected - position: x: ${this.x}, y: ${this.y}`)
       return 
     }

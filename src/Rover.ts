@@ -37,7 +37,6 @@ export class Rover {
   }
 
   public moveBackward(obstacle: Position): void {
-
     switch (this.orientation) {
       case Orientation.North:
         this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
@@ -97,13 +96,5 @@ export class Rover {
       default:
         break;
     }
-  }
-
-  public getPosition(): Position {
-    return this.position;
-  }
-
-  public getOrientation(): Orientation {
-    return this.orientation;
   }
 }
