@@ -19,8 +19,10 @@ test("Rover moves forward and backward correctly in each orientation", () => {
 
   orientations.forEach((initialOrientation) => {
     const initialPosition = new Position(0, 0);
+    const initialPosition1 = new Position(0, 0);
+    
     const roverForward = new Rover(initialPosition, initialOrientation, map);
-    const roverBackward = new Rover(initialPosition, initialOrientation, map);
+    const roverBackward = new Rover(initialPosition1, initialOrientation, map);
 
     const obstaclePosition = new Position(1, 1);
 
@@ -81,8 +83,10 @@ test("Rover turns left and right correctly in each orientation", () => {
 
   orientations.forEach((initialOrientation) => {
     const initialPosition = new Position(0, 0);
+    const initialPosition1 = new Position(0, 0);
+
     const roverLeft = new Rover(initialPosition, initialOrientation, map);
-    const roverRight = new Rover(initialPosition, initialOrientation, map);
+    const roverRight = new Rover(initialPosition1, initialOrientation, map);
 
     // Effectuer un virage à gauche
     RoverInterpreter.interpret("gauche", roverLeft, new Position(0, 0));
