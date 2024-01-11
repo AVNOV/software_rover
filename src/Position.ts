@@ -24,14 +24,16 @@ export class Position {
     }
   }
 
-  public checkPosition(obstacle: Position, map: Map, position: Position, x:number, y: number): void {
+  public checkPosition(obstacle: Position, map: Map, position: Position, x: number, y: number): void {
     if (obstacle.x === position.x + x && obstacle.y === position.y + y) {
-      console.log(`Obstacle detected - position: x: ${this.x}, y: ${this.y}`)
-      return 
+      console.log(`Obstacle detected - position: x: ${this.x}, y: ${this.y}`);
+      return;
     }
-    this.x = this.x + x
-    this.y = this.y + y
-
-    this.getPosition(map)
+    this.x = this.x + x;
+    this.y = this.y + y;
+  
+    this.getPosition(map);
+    console.log(`Position: x: ${this.x}, y: ${this.y}`);
   }
+  
 }

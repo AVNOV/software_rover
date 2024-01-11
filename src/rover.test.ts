@@ -4,6 +4,7 @@ import { Rover } from "./Rover";
 import { Orientation } from "./Orientation";
 import { Map } from "./Map";
 import { Position } from "./Position";
+import { RoverInterpreter } from "./RoverInterpreter";
 
 // Tests
 test("Rover moves forward and backward correctly in each orientation", () => {
@@ -15,16 +16,16 @@ test("Rover moves forward and backward correctly in each orientation", () => {
     Orientation.East,
     Orientation.West,
   ];
-  const initialPosition = new Position(0, 0);
 
   orientations.forEach((initialOrientation) => {
+    const initialPosition = new Position(0, 0);
     const roverForward = new Rover(initialPosition, initialOrientation, map);
     const roverBackward = new Rover(initialPosition, initialOrientation, map);
 
     const obstaclePosition = new Position(1, 1);
 
     // Effectuer un mouvement vers l'avant
-    roverForward.moveForward(obstaclePosition);
+    RoverInterpreter.interpret("avancer", roverForward, obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
     switch (initialOrientation) {
@@ -45,7 +46,7 @@ test("Rover moves forward and backward correctly in each orientation", () => {
     }
 
     // Effectuer un mouvement vers l'arrière
-    roverBackward.moveBackward(obstaclePosition);
+    RoverInterpreter.interpret("reculer", roverBackward, obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
     switch (initialOrientation) {
@@ -78,14 +79,13 @@ test("Rover turns left and right correctly in each orientation", () => {
     Orientation.West,
   ];
 
-  const initialPosition = new Position(0, 0);
-
   orientations.forEach((initialOrientation) => {
+    const initialPosition = new Position(0, 0);
     const roverLeft = new Rover(initialPosition, initialOrientation, map);
     const roverRight = new Rover(initialPosition, initialOrientation, map);
 
     // Effectuer un virage à gauche
-    roverLeft.turnLeft();
+    RoverInterpreter.interpret("gauche", roverLeft, new Position(0, 0));
 
     // Vérifier que l'orientation a été mise à jour correctement
     switch (initialOrientation) {
@@ -110,7 +110,7 @@ test("Rover turns left and right correctly in each orientation", () => {
     }
 
     // Effectuer un virage à droite
-    roverRight.turnRight();
+    RoverInterpreter.interpret("droite", roverRight, new Position(0, 0));
 
     // Vérifier que l'orientation a été mise à jour correctement
     switch (initialOrientation) {
