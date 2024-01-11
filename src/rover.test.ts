@@ -3,19 +3,28 @@ import { expect, test } from "vitest";
 import { Rover } from "./Rover";
 import { Orientation } from "./Orientation";
 import { Map } from "./Map";
+import { Position } from "./Position";
 
 // Tests
 test("Rover moves forward and backward correctly in each orientation", () => {
   const map = new Map(5, 5); // Par exemple, une carte de largeur 5 et hauteur 5
 
-  const orientations = [Orientation.North, Orientation.South, Orientation.East, Orientation.West];
+  const orientations = [
+    Orientation.North,
+    Orientation.South,
+    Orientation.East,
+    Orientation.West,
+  ];
+  const initialPosition = new Position(0, 0);
 
   orientations.forEach((initialOrientation) => {
-    const roverForward = new Rover({ x: 0, y: 0 }, initialOrientation, map);
-    const roverBackward = new Rover({ x: 0, y: 0 }, initialOrientation, map);
+    const roverForward = new Rover(initialPosition, initialOrientation, map);
+    const roverBackward = new Rover(initialPosition, initialOrientation, map);
+
+    const obstaclePosition = new Position(1, 1);
 
     // Effectuer un mouvement vers l'avant
-    roverForward.moveForward();
+    roverForward.moveForward(obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
     switch (initialOrientation) {
@@ -36,11 +45,12 @@ test("Rover moves forward and backward correctly in each orientation", () => {
     }
 
     // Effectuer un mouvement vers l'arrière
-    roverBackward.moveBackward();
+    roverBackward.moveBackward(obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
     switch (initialOrientation) {
       case Orientation.North:
+        console.log(roverBackward.getPosition());
         expect(roverBackward.getPosition()).toEqual({ x: 0, y: 4 }); // La carte reboucle du bas vers le haut
         break;
       case Orientation.South:
@@ -61,11 +71,18 @@ test("Rover moves forward and backward correctly in each orientation", () => {
 test("Rover turns left and right correctly in each orientation", () => {
   const map = new Map(5, 5); // Par exemple, une carte de largeur 5 et hauteur 5
 
-  const orientations = [Orientation.North, Orientation.South, Orientation.East, Orientation.West];
+  const orientations = [
+    Orientation.North,
+    Orientation.South,
+    Orientation.East,
+    Orientation.West,
+  ];
+
+  const initialPosition = new Position(0, 0);
 
   orientations.forEach((initialOrientation) => {
-    const roverLeft = new Rover({ x: 0, y: 0 }, initialOrientation, map);
-    const roverRight = new Rover({ x: 0, y: 0 }, initialOrientation, map);
+    const roverLeft = new Rover(initialPosition, initialOrientation, map);
+    const roverRight = new Rover(initialPosition, initialOrientation, map);
 
     // Effectuer un virage à gauche
     roverLeft.turnLeft();
