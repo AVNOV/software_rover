@@ -1,5 +1,5 @@
 import { Rover } from "./Rover";
-import { Position } from "./Position";
+import { Position } from "../Topology/Position";
 
 // Service
 export class RoverInterpreter {

@@ -1,8 +1,8 @@
-import { Map } from "./Map";
-import { Orientation } from "./Orientation";
-import { Position } from "./Position";
-import { Rover } from "./Rover";
-import { RoverInterpreter } from "./RoverInterpreter";
+import { Map } from "./Topology/Map";
+import { Orientation } from "./Topology/Orientation";
+import { Position } from "./Topology/Position";
+import { Rover } from "./Rover/Rover";
+import { RoverInterpreter } from "./Rover/RoverInterpreter";
 
 const map = new Map(10, 10);
 const roverPosition = new Position(0, 0);

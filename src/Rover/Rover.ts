@@ -1,6 +1,6 @@
-import { Map } from "./Map";
-import { Orientation } from "./Orientation";
-import { Position } from "./Position";
+import { Map } from "../Topology/Map";
+import { Orientation } from "../Topology/Orientation";
+import { Position } from "../Topology/Position";
 
 // Objet-valeur
 export class Rover {
