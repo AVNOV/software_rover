@@ -1,10 +1,10 @@
 import { expect, test } from "vitest";
 
-import { Rover } from "./Rover/Rover";
-import { Orientation } from "./Topology/Orientation";
-import { Map } from "./Topology/Map";
-import { Position } from "./Topology/Position";
-import { RoverInterpreter } from "./Rover/RoverInterpreter";
+import { Rover } from "../../src/Rover/Rover";
+import { Orientation } from "../../src/Topology/Orientation";
+import { Map } from "../../src/Topology/Map";
+import { Position } from "../../src/Topology/Position";
+import { RoverInterpreter } from "../../src/Rover/RoverInterpreter";
 
 // Tests
 test("Rover moves forward and backward correctly in each orientation", () => {
