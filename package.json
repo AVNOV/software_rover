@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start:dev": "ts-node src/main.ts",
+    "start:dev": "nodemon --exec ts-node  src/main.ts",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -13,7 +13,7 @@
     "@types/node": "^20.11.0",
     "@types/ws": "^8.5.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.3",
     "vite": "^5.0.0",
     "vitest": "^1.1.0"
   },
