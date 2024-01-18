@@ -20,14 +20,12 @@ console.log('Server started on port 8080')
 
 wss.on('connection', (ws: WebSocket) => {
   ws.send(JSON.stringify(roverPosition))
+  ws.send(JSON.stringify(map))
+  ws.send(JSON.stringify(rover.getOrientation()))
   
   ws.on('message', (message: Buffer) => {
     const roverPosition = RoverInterpreter.interpret(message.toString(), rover, obstaclePosition)
     ws.send(JSON.stringify(roverPosition))
-  })
-
-  ws.on('close', () => {
-    console.log('Client disconnected')
   })
 })
 

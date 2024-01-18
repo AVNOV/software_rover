@@ -1,11 +1,16 @@
 const mySocket = new WebSocket("ws://localhost:8080/ws")
 
 mySocket.onmessage = function (event) {
-  const positionOrOrientation = JSON.parse(event.data)
-  if (typeof positionOrOrientation === 'object') {
-    document.querySelector('#roverPosition').innerHTML = `X: ${positionOrOrientation.x} ; Y: ${positionOrOrientation.y}`
+  const data = JSON.parse(event.data)
+  if (typeof data === 'object') {
+    if (Object.getOwnPropertyNames(data).includes('width')) {
+      document.querySelector('#mapSize').innerHTML = `width: ${data.width} ; height: ${data.height}`
+    }
+    if (Object.getOwnPropertyNames(data).includes('x')) {
+      document.querySelector('#roverPosition').innerHTML = `X: ${data.x} ; Y: ${data.y}`
+    }
   } else {
-    document.querySelector('#roverOrientation').innerHTML = positionOrOrientation
+    document.querySelector('#roverOrientation').innerHTML = data
   }
 }
 

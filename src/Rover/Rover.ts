@@ -97,4 +97,8 @@ export class Rover {
   public turnRight(): Orientation {
     return this.turn("R");
   }
+
+  public getOrientation(): Orientation {
+    return this.orientation;
+  }
 }
