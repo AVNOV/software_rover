@@ -3,7 +3,11 @@ import { Position } from "../Topology/Position";
 
 // Service
 export class RoverInterpreter {
-  static interpret(command: string, rover: Rover, obstacle: Position): void {
+  static interpret(
+    command: string,
+    rover: Rover,
+    obstacle: Position,
+  ): void {
     switch (command) {
       case "avancer":
         rover.moveForward(obstacle);
