@@ -8,7 +8,7 @@ export class RoverInterpreter {
     command: string,
     rover: Rover,
     obstacle: Position
-  ): Position | Orientation | string {
+  ): Position | string {
     switch (command) {
       case "avancer":
         return rover.moveForward(obstacle);
