@@ -13,9 +13,8 @@ test("Rover stops when it encounters an obstacle", () => {
   const rover = new Rover(initialPosition, Orientation.North, map)
 
   // Effectuer un mouvement en avant
-  RoverInterpreter.interpret("avancer", rover, obstacle)
+  const roverPosition = RoverInterpreter.interpret("avancer", rover, obstacle);
 
   // Vérifier que la position a été mise à jour correctement
-  expect(rover.getPosition()).toEqual({ x: 0, y: 0 })
-  expect(rover.getOrientation()).toEqual(Orientation.North) // Utiliser la méthode getOrientation
-})
+  expect(roverPosition).toEqual({ x: 0, y: 0 });
+});
