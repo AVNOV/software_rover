@@ -14,14 +14,6 @@ export class Rover {
     this.map = map;
   }
 
-  public getPosition(): Position {
-    return this.position;
-  }
-
-  public getOrientation(): Orientation {
-    return this.orientation;
-  }
-
   public moveForward(obstacle: Position): Position {
     switch (this.orientation) {
       case Orientation.North:

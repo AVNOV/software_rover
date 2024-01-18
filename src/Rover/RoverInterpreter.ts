@@ -1,26 +1,29 @@
 import { Rover } from "./Rover";
 import { Position } from "../Topology/Position";
+import { Orientation } from "../Topology/Orientation";
 
 // Service
 export class RoverInterpreter {
   static interpret(
     command: string,
     rover: Rover,
-    obstacle: Position,
-  ): void {
+    obstacle: Position
+  ): Position | Orientation | string {
     switch (command) {
       case "avancer":
-        rover.moveForward(obstacle);
-        break;
+        return rover.moveForward(obstacle);
+
       case "reculer":
-        rover.moveBackward(obstacle);
-        break;
+        return rover.moveBackward(obstacle);
+
       case "droite":
-        rover.turnRight();
-        break;
+        return rover.turnRight();
+
       case "gauche":
-        rover.turnLeft();
-        break;
+        return rover.turnLeft();
+
+      default:
+        return "Commande invalide";
     }
   }
 }
