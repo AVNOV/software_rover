@@ -14,7 +14,7 @@ export class Rover {
     this.map = map;
   }
 
-  public moveForward(obstacle: Position): Position {
+  public moveForward(obstacle: Position) {
     switch (this.orientation) {
       case Orientation.North:
         this.position.checkPosition(obstacle, this.map, this.position, 0, 1);
@@ -31,10 +31,10 @@ export class Rover {
       default:
         break;
     }
-    return this.position;
+    return { position: this.position, orientation: this.orientation};
   }
 
-  public moveBackward(obstacle: Position): Position {
+  public moveBackward(obstacle: Position) {
     switch (this.orientation) {
       case Orientation.North:
         this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
@@ -51,10 +51,10 @@ export class Rover {
       default:
         break;
     }
-    return this.position;
+    return { position: this.position, orientation: this.orientation};
   }
 
-  private turn(direction: string): Orientation {
+  private turn(direction: string) {
     switch (this.orientation) {
       case Orientation.North:
         if (direction == "L") {
@@ -87,14 +87,14 @@ export class Rover {
       default:
         break;
     }
-    return this.orientation;
+    return { position: this.position, orientation: this.orientation};
   }
 
-  public turnLeft(): Orientation {
+  public turnLeft() {
     return this.turn("L");
   }
 
-  public turnRight(): Orientation {
+  public turnRight() {
     return this.turn("R");
   }
 

@@ -1,6 +1,6 @@
 import { Rover } from "./Rover";
-import { Position } from "../Topology/Position";
-import { Orientation } from "../Topology/Orientation";
+import { Position } from '../Topology/Position';
+import { Orientation } from '../Topology/Orientation';
 
 // Service
 export class RoverInterpreter {
@@ -8,7 +8,7 @@ export class RoverInterpreter {
     command: string,
     rover: Rover,
     obstacle: Position
-  ): Position | string {
+  ): { position: Position, orientation: Orientation } | string {
     switch (command) {
       case "avancer":
         return rover.moveForward(obstacle);
