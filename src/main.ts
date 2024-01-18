@@ -11,32 +11,33 @@ const map = new Map(randomWidth, randomHeight);
 const roverPosition = new Position(0, 0);
 const rover = new Rover(roverPosition, Orientation.North, map);
 const randomObstacleX = Math.floor(Math.random() * (map.width - 1 - 1 + 1)) + 1;
-const randomObstacleY =
-  Math.floor(Math.random() * (map.height - 1 - 1 + 1)) + 1;
+const randomObstacleY = Math.floor(Math.random() * (map.height - 1 - 1 + 1)) + 1;
 const obstaclePosition = new Position(randomObstacleX, randomObstacleY);
 
 const wss = new WebSocket.Server({ port: 8080 });
-let obstacleRevealed = true;
+let obstacleRevealed = false;
 
 console.log("Server started on port 8080");
 
 wss.on("connection", (ws: WebSocket) => {
-  ws.send(JSON.stringify({ type: "map", value: map }));
-  ws.send(JSON.stringify({ type: "position", value: roverPosition }));
-  ws.send(JSON.stringify({ type: "orientation", value: rover.getOrientation() }));
-  if (obstacleRevealed)
-    ws.send(JSON.stringify({ type: "obstacle", value: obstaclePosition }));
+  ws.send(JSON.stringify(map));
+  ws.send(JSON.stringify({ position: roverPosition, orientation: rover.getOrientation() }));
+  if (obstacleRevealed) ws.send(JSON.stringify({ type: "obstacle", value: obstaclePosition }));
 
   ws.on("message", (message: Buffer) => {
-    const value = RoverInterpreter.interpret(
-      message.toString(),
-      rover,
-      obstaclePosition
-    );
+    const orientation = rover.getOrientation();
+    const oldRoverPosition: Position = JSON.parse(JSON.stringify(roverPosition));
+    const value = RoverInterpreter.interpret(message.toString(), rover, obstaclePosition);
 
-    let type = "";
-    if (typeof value === "object") type = "position";
-    if (typeof value === "string") type = "orientation";
-    ws.send(JSON.stringify({ type, value }));
+    if (
+      typeof value === "object" &&
+      value.orientation === orientation &&
+      value.position.isSamePosition(oldRoverPosition)
+    ) {
+      obstacleRevealed = true;
+      ws.send(JSON.stringify({ type: "obstacle", value: obstaclePosition }));
+    }
+
+    ws.send(JSON.stringify(value));
   });
 });

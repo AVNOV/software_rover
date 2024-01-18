@@ -2,30 +2,27 @@ const mySocket = new WebSocket("ws://localhost:8080/ws")
 
 mySocket.onmessage = function (event) {
   const data = JSON.parse(event.data)
-  if (['map', 'position', 'obstacle'].includes(data.type)) {
-    switch (data.type) {
-      case 'map':
-        createMap(data.value.width, data.value.height)
-        document.querySelector('#mapSize').innerHTML = `width: ${data.value.width} ; height: ${data.value.height}`
-        break;
-      case 'position':
-        document.querySelectorAll('td').forEach(cell => {
-          if (!cell.getAttribute('obstacle')) cell.style.backgroundColor = 'white'
-        })
-        document.querySelector(`#position-${data.value.x}-${data.value.y}`).style.backgroundColor = 'black'
-        document.querySelector('#roverPosition').innerHTML = `X: ${data.value.x} ; Y: ${data.value.y}`
-        break;
-      case 'obstacle':
-        const cell = document.querySelector(`#position-${data.value.x}-${data.value.y}`)
-        cell.setAttribute('obstacle', true)
-        cell.style.backgroundColor = 'red'
-        break;
-      default:
-        break;
-    }
-  } else if (data.type === 'orientation') {
-    document.querySelector('#roverOrientation').innerHTML = data.value
+  if (data.width && data.height) {
+    createMap(data.width, data.height)
+    document.querySelector('#mapSize').innerHTML = `width: ${data.width} ; height: ${data.height}`
+
+    return
   }
+
+  if (data.type && data.type === 'obstacle') {
+    const cell = document.querySelector(`#position-${data.value.x}-${data.value.y}`)
+    cell.setAttribute('obstacle', true)
+    cell.style.backgroundColor = 'red'
+
+    return
+  }
+
+  document.querySelectorAll('td').forEach(cell => {
+    if (!cell.getAttribute('obstacle')) cell.style.backgroundColor = 'white'
+  })
+  document.querySelector(`#position-${data.position.x}-${data.position.y}`).style.backgroundColor = 'black'
+  document.querySelector('#roverPosition').innerHTML = `X: ${data.position.x} ; Y: ${data.position.y}`
+  document.querySelector('#roverOrientation').innerHTML = data.orientation
 }
 
 mySocket.onopen = function () {

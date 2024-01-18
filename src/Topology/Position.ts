@@ -33,5 +33,9 @@ export class Position {
   
     this.getPosition(map);
   }
+
+  public isSamePosition(position: Position): boolean {
+    return this.x === position.x && this.y === position.y;
+  }
   
 }
