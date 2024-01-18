@@ -17,12 +17,12 @@ test("Rover moves forward and backward correctly in each orientation", () => {
     Orientation.West,
   ];
 
-  orientations.forEach((initialOrientation) => {
+  orientations.forEach((orientation) => {
     const initialPosition = new Position(0, 0);
     const initialPosition1 = new Position(0, 0);
 
-    const roverForward = new Rover(initialPosition, initialOrientation, map);
-    const roverBackward = new Rover(initialPosition1, initialOrientation, map);
+    const roverForward = new Rover(initialPosition, orientation, map);
+    const roverBackward = new Rover(initialPosition1, orientation, map);
 
     const obstaclePosition = new Position(1, 1);
 
@@ -30,7 +30,7 @@ test("Rover moves forward and backward correctly in each orientation", () => {
    const roverPosition = RoverInterpreter.interpret("avancer", roverForward, obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
-    switch (initialOrientation) {
+    switch (orientation) {
       case Orientation.North:
         expect(roverPosition).toEqual({ x: 0, y: 1 });
         break;
@@ -51,7 +51,7 @@ test("Rover moves forward and backward correctly in each orientation", () => {
   const roverPosition2 =  RoverInterpreter.interpret("reculer", roverBackward, obstaclePosition);
 
     // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
-    switch (initialOrientation) {
+    switch (orientation) {
       case Orientation.North:
         expect(roverPosition2).toEqual({ x: 0, y: 4 }); // La carte reboucle du bas vers le haut
         break;
@@ -80,12 +80,12 @@ test("Rover turns left and right correctly in each orientation", () => {
     Orientation.West,
   ];
 
-  orientations.forEach((initialOrientation) => {
+  orientations.forEach((orientation) => {
     const initialPosition = new Position(0, 0);
     const initialPosition1 = new Position(0, 0);
 
-    const roverLeft = new Rover(initialPosition, initialOrientation, map);
-    const roverRight = new Rover(initialPosition1, initialOrientation, map);
+    const roverLeft = new Rover(initialPosition, orientation, map);
+    const roverRight = new Rover(initialPosition1, orientation, map);
 
     // Effectuer un virage à gauche
     const roverOrientation = RoverInterpreter.interpret(
@@ -95,7 +95,7 @@ test("Rover turns left and right correctly in each orientation", () => {
     );
 
     // Vérifier que l'orientation a été mise à jour correctement
-    switch (initialOrientation) {
+    switch (orientation) {
       case Orientation.North:
         expect(roverOrientation).toEqual(Orientation.West); // Utiliser la méthode getOrientation
         break;
@@ -120,7 +120,7 @@ test("Rover turns left and right correctly in each orientation", () => {
     );
 
     // Vérifier que l'orientation a été mise à jour correctement
-    switch (initialOrientation) {
+    switch (orientation) {
       case Orientation.North:
         expect(roverOrientation2).toEqual(Orientation.East); // Utiliser la méthode getOrientation
         break;
