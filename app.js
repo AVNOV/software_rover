@@ -1,6 +1,5 @@
 const mySocket = new WebSocket("ws://localhost:8080/ws")
 
-// add event listener reacting when message is received
 mySocket.onmessage = function (event) {
   const positionOrOrientation = JSON.parse(event.data)
   if (typeof positionOrOrientation === 'object') {
@@ -10,7 +9,7 @@ mySocket.onmessage = function (event) {
   }
 }
 
-mySocket.onopen = function (event) {
+mySocket.onopen = function () {
   const buttonMoveForward = document.querySelector('#moveForward')
   const buttonMoveBackward = document.querySelector('#moveBackward')
   const buttonTurnLeft = document.querySelector('#turnLeft')
