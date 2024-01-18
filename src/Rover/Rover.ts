@@ -54,17 +54,7 @@ export class Rover {
     return this.position;
   }
 
-  public turnLeft(): Orientation {
-    this.turn("L");
-    return this.orientation;
-  }
-
-  public turnRight(): Orientation {
-    this.turn("R");
-    return this.orientation;
-  }
-
-  private turn(direction: string): void {
+  private turn(direction: string): Orientation {
     switch (this.orientation) {
       case Orientation.North:
         if (direction == "L") {
@@ -97,5 +87,14 @@ export class Rover {
       default:
         break;
     }
+    return this.orientation;
+  }
+
+  public turnLeft(): Orientation {
+    return this.turn("L");
+  }
+
+  public turnRight(): Orientation {
+    return this.turn("R");
   }
 }
