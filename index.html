@@ -6,7 +6,15 @@
   <title>Vite + TS</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <button id="moveForward">Avancer</button>
+    <button id="moveBackward">Reculer</button>
+    <button id="turnLeft">Tourner à gauche</button>
+    <button id="turnRight">Tourner à droite</button>
+
+    <p>Rover position : <span id="roverPosition">X: 0 ; Y: 0</span></p>
+    <p>Rover orientation : <span id="roverOrientation">N</span></p>
+  </div>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
