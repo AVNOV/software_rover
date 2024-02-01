@@ -31,10 +31,10 @@ mySocket.onopen = function () {
   const buttonTurnLeft = document.querySelector('#turnLeft')
   const buttonTurnRight = document.querySelector('#turnRight')
 
-  sendMessage(buttonMoveForward, 'avancer')
-  sendMessage(buttonMoveBackward, 'reculer')
-  sendMessage(buttonTurnLeft, 'gauche')
-  sendMessage(buttonTurnRight, 'droite')
+  sendMessage(buttonMoveForward, 'A')
+  sendMessage(buttonMoveBackward, 'R')
+  sendMessage(buttonTurnLeft, 'G')
+  sendMessage(buttonTurnRight, 'D')
 }
 
 const sendMessage = (button, message) => {

@@ -8,22 +8,22 @@ export class RoverInterpreter {
     command: string,
     rover: Rover,
     obstacle: Position
-  ): { position: Position, orientation: Orientation } | string {
+  ): Rover {
     switch (command) {
-      case "avancer":
+      case "A":
         return rover.moveForward(obstacle);
 
-      case "reculer":
+      case "R":
         return rover.moveBackward(obstacle);
 
-      case "droite":
-        return rover.turnRight();
+      case "D":
+        return rover.turnRight(obstacle);
 
-      case "gauche":
-        return rover.turnLeft();
+      case "G":
+        return rover.turnLeft(obstacle);
 
       default:
-        return "Commande invalide";
+        return rover;
     }
   }
 }

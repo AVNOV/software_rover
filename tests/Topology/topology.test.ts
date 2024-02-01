@@ -17,7 +17,7 @@ describe("obstacle topology", () => {
 
     // Effectuer un mouvement en avant
     const roverPosition = RoverInterpreter.interpret(
-      "avancer",
+      "A",
       rover,
       obstacle
     );
@@ -26,7 +26,7 @@ describe("obstacle topology", () => {
       expect(roverPosition).toEqual("Commande invalide");
     } else {
       // Vérifier que la position a été mise à jour correctement
-      expect(roverPosition.position).toEqual({ x: 0, y: 0 });
+      expect(roverPosition.getPosition()).toEqual({ x: 0, y: 0 });
     }
   });
 });

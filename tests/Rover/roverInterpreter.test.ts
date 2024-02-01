@@ -30,7 +30,7 @@ describe("move forward via interpreter", () => {
 
       // Effectuer un mouvement vers l'avant
       const roverPosition = RoverInterpreter.interpret(
-        "avancer",
+        "A",
         roverForward,
         obstaclePosition
       );
@@ -41,16 +41,16 @@ describe("move forward via interpreter", () => {
         // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
         switch (orientation) {
           case Orientation.North:
-            expect(roverPosition.position).toEqual({ x: 0, y: 1 });
+            expect(roverPosition.getPosition()).toEqual({ x: 0, y: 1 });
             break;
           case Orientation.South:
-            expect(roverPosition.position).toEqual({ x: 0, y: 4 }); // La carte reboucle à partir du haut vers le bas
+            expect(roverPosition.getPosition()).toEqual({ x: 0, y: 4 }); // La carte reboucle à partir du haut vers le bas
             break;
           case Orientation.East:
-            expect(roverPosition.position).toEqual({ x: 1, y: 0 });
+            expect(roverPosition.getPosition()).toEqual({ x: 1, y: 0 });
             break;
           case Orientation.West:
-            expect(roverPosition.position).toEqual({ x: 4, y: 0 }); // La carte reboucle à partir de la droite vers la gauche
+            expect(roverPosition.getPosition()).toEqual({ x: 4, y: 0 }); // La carte reboucle à partir de la droite vers la gauche
             break;
           default:
             break;
@@ -59,7 +59,7 @@ describe("move forward via interpreter", () => {
 
       // Effectuer un mouvement vers l'arrière
       const roverPosition2 = RoverInterpreter.interpret(
-        "reculer",
+        "R",
         roverBackward,
         obstaclePosition
       );
@@ -70,16 +70,16 @@ describe("move forward via interpreter", () => {
         // Vérifier que la position a été mise à jour correctement en tenant compte de la carte
         switch (orientation) {
           case Orientation.North:
-            expect(roverPosition2.position).toEqual({ x: 0, y: 4 }); // La carte reboucle du bas vers le haut
+            expect(roverPosition2.getPosition()).toEqual({ x: 0, y: 4 }); // La carte reboucle du bas vers le haut
             break;
           case Orientation.South:
-            expect(roverPosition2.position).toEqual({ x: 0, y: 1 });
+            expect(roverPosition2.getPosition()).toEqual({ x: 0, y: 1 });
             break;
           case Orientation.East:
-            expect(roverPosition2.position).toEqual({ x: 4, y: 0 }); // La carte reboucle de la gauche vers la droite
+            expect(roverPosition2.getPosition()).toEqual({ x: 4, y: 0 }); // La carte reboucle de la gauche vers la droite
             break;
           case Orientation.West:
-            expect(roverPosition2.position).toEqual({ x: 1, y: 0 });
+            expect(roverPosition2.getPosition()).toEqual({ x: 1, y: 0 });
             break;
           default:
             break;
@@ -109,7 +109,7 @@ describe("change orientation via interpreter", () => {
 
       // Effectuer un virage à gauche
       const roverOrientation = RoverInterpreter.interpret(
-        "gauche",
+        "G",
         roverLeft,
         new Position(0, 0)
       );
@@ -120,16 +120,16 @@ describe("change orientation via interpreter", () => {
         // Vérifier que l'orientation a été mise à jour correctement
         switch (orientation) {
           case Orientation.North:
-            expect(roverOrientation.orientation).toEqual(Orientation.West); // Utiliser la méthode getOrientation
+            expect(roverOrientation.getOrientation()).toEqual(Orientation.West); // Utiliser la méthode getOrientation
             break;
           case Orientation.South:
-            expect(roverOrientation.orientation).toEqual(Orientation.East); // Utiliser la méthode getOrientation
+            expect(roverOrientation.getOrientation()).toEqual(Orientation.East); // Utiliser la méthode getOrientation
             break;
           case Orientation.East:
-            expect(roverOrientation.orientation).toEqual(Orientation.North); // Utiliser la méthode getOrientation
+            expect(roverOrientation.getOrientation()).toEqual(Orientation.North); // Utiliser la méthode getOrientation
             break;
           case Orientation.West:
-            expect(roverOrientation.orientation).toEqual(Orientation.South); // Utiliser la méthode getOrientation
+            expect(roverOrientation.getOrientation()).toEqual(Orientation.South); // Utiliser la méthode getOrientation
             break;
           default:
             break;
@@ -138,7 +138,7 @@ describe("change orientation via interpreter", () => {
 
       // Effectuer un virage à droite
       const roverOrientation2 = RoverInterpreter.interpret(
-        "droite",
+        "D",
         roverRight,
         new Position(0, 0)
       );
@@ -149,16 +149,16 @@ describe("change orientation via interpreter", () => {
         // Vérifier que l'orientation a été mise à jour correctement
         switch (orientation) {
           case Orientation.North:
-            expect(roverOrientation2.orientation).toEqual(Orientation.East); // Utiliser la méthode getOrientation
+            expect(roverOrientation2.getOrientation()).toEqual(Orientation.East); // Utiliser la méthode getOrientation
             break;
           case Orientation.South:
-            expect(roverOrientation2.orientation).toEqual(Orientation.West); // Utiliser la méthode getOrientation
+            expect(roverOrientation2.getOrientation()).toEqual(Orientation.West); // Utiliser la méthode getOrientation
             break;
           case Orientation.East:
-            expect(roverOrientation2.orientation).toEqual(Orientation.South); // Utiliser la méthode getOrientation
+            expect(roverOrientation2.getOrientation()).toEqual(Orientation.South); // Utiliser la méthode getOrientation
             break;
           case Orientation.West:
-            expect(roverOrientation2.orientation).toEqual(Orientation.North); // Utiliser la méthode getOrientation
+            expect(roverOrientation2.getOrientation()).toEqual(Orientation.North); // Utiliser la méthode getOrientation
             break;
           default:
             break;

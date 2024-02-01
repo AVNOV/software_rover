@@ -10,31 +10,32 @@ export class Position {
     this.y = y;
   }
 
-  private getPosition(map: Map): void {
-    if (this.x < 0) {
-      this.x = map.width - 1;
-    } else if (this.x > map.width - 1) {
-      this.x = 0;
+  private checkMapLimitAndSetNewPosition(map: Map, position: Position): void {
+    if (position.x < 0) {
+      position.x = map.width - 1;
+    } else if (position.x > map.width - 1) {
+      position.x = 0;
     }
 
-    if (this.y < 0) {
-      this.y = map.height - 1;
-    } else if (this.y > map.height - 1) {
-      this.y = 0;
+    if (position.y < 0) {
+      position.y = map.height - 1;
+    } else if (position.y > map.height - 1) {
+      position.y = 0;
     }
   }
 
-  public checkPosition(obstacle: Position, map: Map, position: Position, x: number, y: number): void {
-    if (obstacle.x === position.x + x && obstacle.y === position.y + y) {
-      return;
+  public checkObstacleAndSetNewPosition(obstacle: Position, map: Map, x: number, y: number): Position {
+    if (obstacle.x === this.x + x && obstacle.y === this.y + y) {
+      return new Position(this.x, this.y);
     }
-    this.x = this.x + x;
-    this.y = this.y + y;
+    const newPosition = new Position(this.x + x, this.y + y);
   
-    this.getPosition(map);
+    this.checkMapLimitAndSetNewPosition(map, newPosition);
+
+    return newPosition;
   }
 
-  public isSamePosition(position: Position): boolean {
+  public equals(position: Position): boolean {
     return this.x === position.x && this.y === position.y;
   }
   

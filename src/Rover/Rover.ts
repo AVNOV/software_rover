@@ -1,6 +1,6 @@
 import { Map } from "../Topology/Map";
 import { Orientation } from "../Topology/Orientation";
-import { Position } from "../Topology/Position";
+import { Position } from '../Topology/Position';
 
 // Objet-valeur
 export class Rover {
@@ -15,90 +15,112 @@ export class Rover {
   }
 
   public moveForward(obstacle: Position) {
+    let position: Position;
     switch (this.orientation) {
       case Orientation.North:
-        this.position.checkPosition(obstacle, this.map, this.position, 0, 1);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, 1);
         break;
       case Orientation.South:
-        this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, -1);
         break;
       case Orientation.East:
-        this.position.checkPosition(obstacle, this.map, this.position, 1, 0);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 1, 0);
         break;
       case Orientation.West:
-        this.position.checkPosition(obstacle, this.map, this.position, -1, 0);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, -1, 0);
         break;
       default:
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, 0);
         break;
     }
-    return { position: this.position, orientation: this.orientation};
+
+    return new Rover(position, this.orientation, this.map);
   }
 
   public moveBackward(obstacle: Position) {
+    let position: Position;
     switch (this.orientation) {
       case Orientation.North:
-        this.position.checkPosition(obstacle, this.map, this.position, 0, -1);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, -1);
         break;
       case Orientation.South:
-        this.position.checkPosition(obstacle, this.map, this.position, 0, 1);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, 1);
         break;
       case Orientation.East:
-        this.position.checkPosition(obstacle, this.map, this.position, -1, 0);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, -1, 0);
         break;
       case Orientation.West:
-        this.position.checkPosition(obstacle, this.map, this.position, +1, 0);
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, +1, 0);
         break;
       default:
+        position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, 0);;
         break;
     }
-    return { position: this.position, orientation: this.orientation};
+
+    return new Rover(position, this.orientation, this.map);
   }
 
-  private turn(direction: string) {
+  private turn(direction: string, obstacle: Position): Rover {
+    let orientation: Orientation;
     switch (this.orientation) {
       case Orientation.North:
         if (direction == "L") {
-          this.orientation = Orientation.West;
+          orientation = Orientation.West;
         } else {
-          this.orientation = Orientation.East;
+          orientation = Orientation.East;
         }
         break;
       case Orientation.South:
         if (direction == "L") {
-          this.orientation = Orientation.East;
+          orientation = Orientation.East;
         } else {
-          this.orientation = Orientation.West;
+          orientation = Orientation.West;
         }
         break;
       case Orientation.East:
         if (direction == "L") {
-          this.orientation = Orientation.North;
+          orientation = Orientation.North;
         } else {
-          this.orientation = Orientation.South;
+          orientation = Orientation.South;
         }
         break;
       case Orientation.West:
         if (direction == "L") {
-          this.orientation = Orientation.South;
+          orientation = Orientation.South;
         } else {
-          this.orientation = Orientation.North;
+          orientation = Orientation.North;
         }
         break;
       default:
+        orientation = Orientation.North
         break;
     }
-    return { position: this.position, orientation: this.orientation};
+
+    const position = this.position.checkObstacleAndSetNewPosition(obstacle, this.map, 0, 0)
+    return new Rover(position, orientation, this.map)
   }
 
-  public turnLeft() {
-    return this.turn("L");
+  public turnLeft(obstacle: Position): Rover {
+    return this.turn("L", obstacle);
   }
 
-  public turnRight() {
-    return this.turn("R");
+  public turnRight(obstacle: Position): Rover {
+    return this.turn("R", obstacle);
+  }
+
+  public getPosition(): Position {
+    return this.position;
   }
 
   public getOrientation(): Orientation {
     return this.orientation;
+  }
+
+  public equalsPosition(position: Position): boolean {
+    return this.position.equals(position);
+  }
+
+  public equalsOrientation(orientation: Orientation): boolean {
+    return this.orientation === orientation;
   }
 }
