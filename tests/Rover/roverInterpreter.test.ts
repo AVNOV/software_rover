@@ -8,8 +8,8 @@ import { RoverInterpreter } from "../../src/Rover/RoverInterpreter";
 import { describe } from "node:test";
 
 // Tests
-describe("Interpreter moves tests ", () => {
-  test("Rover moves forward and backward correctly in each orientation", () => {
+describe("move forward via interpreter", () => {
+  test("when interpreter indicates rover move forward or backward, rover position should change correctly in each way", () => {
     const map = new Map(5, 5); // Par exemple, une carte de largeur 5 et hauteur 5
 
     const orientations = [
@@ -89,8 +89,8 @@ describe("Interpreter moves tests ", () => {
   });
 });
 
-describe("Interpreter orientation tests ", () => {
-  test("Rover turns left and right correctly in each orientation", () => {
+describe("change orientation via interpreter", () => {
+  test("when interpreter indicates rover turns left and right, rover orientation should change correctly in each orientation", () => {
     const map = new Map(5, 5); // Par exemple, une carte de largeur 5 et hauteur 5
 
     const orientations = [

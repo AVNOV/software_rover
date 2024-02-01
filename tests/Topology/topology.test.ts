@@ -6,8 +6,9 @@ import { Position } from "../../src/Topology/Position";
 import { Map } from "../../src/Topology/Map";
 import { describe } from "node:test";
 
-describe("Topology tests ", () => {
-  test("Rover stops when it encounters an obstacle", () => {
+describe("obstacle topology", () => {
+  // when interpreter indicates move forward or backward, rover position should change correctly in each orientation
+  test("when rover encounter an obstacle, rover should stops when it encounters an obstacle", () => {
     const map = new Map(5, 5); // Par exemple, une carte de largeur 5 et hauteur 5
 
     const initialPosition = new Position(0, 0);
