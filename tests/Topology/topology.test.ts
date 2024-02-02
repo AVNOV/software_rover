@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { Rover } from "../../src/Rover/Rover";
 import { RoverInterpreter } from "../../src/Rover/RoverInterpreter";
-import { Orientation } from "../../src/Topology/Orientation";
+import { CardinalPoint, Orientation } from "../../src/Topology/Orientation";
 import { Position } from "../../src/Topology/Position";
 import { Map } from "../../src/Topology/Map";
 import { describe } from "node:test";
@@ -13,7 +13,8 @@ describe("obstacle topology", () => {
 
     const initialPosition = new Position(0, 0);
     const obstacle = new Position(0, 1);
-    const rover = new Rover(initialPosition, Orientation.North, map);
+    const orientation = new Orientation(CardinalPoint.North)
+    const rover = new Rover(initialPosition, orientation, map);
 
     // Effectuer un mouvement en avant
     const roverPosition = RoverInterpreter.interpret(

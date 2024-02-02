@@ -22,7 +22,6 @@ mySocket.onmessage = function (event) {
   })
   document.querySelector(`#position-${data.position.x}-${data.position.y}`).style.backgroundColor = 'black'
   document.querySelector('#roverPosition').innerHTML = `X: ${data.position.x} ; Y: ${data.position.y}`
-  document.querySelector('#roverOrientation').innerHTML = data.orientation
 }
 
 mySocket.onopen = function () {
