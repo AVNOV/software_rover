@@ -23,8 +23,8 @@ Cloner le répertoire projet et se déplacer à la racine.
 
 Installez les dépendances :
 
-```bash
-npm	install
+```
+npm install
 ```
 
 
