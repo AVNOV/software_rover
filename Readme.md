@@ -45,3 +45,12 @@ npm run dev
 > [!WARNING]
 > l'url n'est pas http://localhost:8080 mais bien celle que Vite fournira
 
+  ___
+
+  ### Tests
+
+  pour lancer les tests : 
+
+```
+npm run test
+```
